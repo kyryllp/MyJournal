@@ -5,8 +5,12 @@ from .models import *
 
 
 class LoginUserForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={
+        'placeholder': 'Username:'
+    }))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={
+        'placeholder': 'Password:'
+    }))
 
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get('username')
@@ -24,10 +28,16 @@ class LoginUserForm(forms.Form):
 
 
 class RegisterUserForm(forms.ModelForm):
-    username = forms.CharField(label='Username:')
-    password = forms.CharField(label='Password:', widget=forms.PasswordInput)
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={
+        'placeholder': 'Username:'
+    }))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={
+        'placeholder': 'Password:'
+    }))
 
-    full_name = forms.CharField(label='Your Name:')
+    full_name = forms.CharField(label='', widget=forms.TextInput(attrs={
+        'placeholder': 'Your Name:'
+    }))
 
     class Meta:
         model = User
@@ -44,3 +54,19 @@ class RegisterUserForm(forms.ModelForm):
             raise forms.ValidationError(
                 "This email has already been registered")
         return super(RegisterUserForm, self).clean(*args, **kwargs)
+
+
+class CreatePostForm(forms.ModelForm):
+    title = forms.CharField(label='', widget=forms.TextInput(attrs={
+        'placeholder': 'Title:'
+    }))
+    body = forms.CharField(label='', widget=forms.Textarea(attrs={
+        'placeholder': "What's on your mind?"
+    }))
+
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'body'
+        ]

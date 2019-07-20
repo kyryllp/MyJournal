@@ -1,5 +1,30 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>I'm Home!!!</h1>
+    <div class="home">
+        <div class="header">
+            <div class="photo" >
+                <div id="photo-link">
+                    <a href="">Add Photo</a>
+                </div>
+            </div>
+            <div class="info">
+                <div class="name">
+                    <p>Kyryll Parolys</p>
+                </div>
+                <hr>
+                <div class="journal-form">
+                <form method="post">{% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="journal-submit btn btn-primary">Add new Journal</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

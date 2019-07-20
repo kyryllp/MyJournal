@@ -1,0 +1,50 @@
+.journal {
+    background-color: pink;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: space-between;*/
+    height: 200px;
+}
+
+.photo {
+    display: flex;
+    background-color: rgba(156, 154, 153, 0.65);;
+    width: 200px;
+    height: 238px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 20px;
+    border-radius: 6px;
+}
+
+.info {
+    width: 77%;
+    margin-top: 10px;
+}
+
+.photo:hover {
+    background-color: rgb(103, 101, 101);
+}
+
+.journal-form {
+    text-align: right;
+}
+
+#photo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin: 10% 0;
+    /*align-items: center;*/
+}
+
+#id_body {
+    height: 100px;
+}
+

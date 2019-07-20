@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -52,4 +52,10 @@ def logout_view(request):
 
 @login_required
 def home_view(request):
-    return render(request, 'home.html')
+    form = CreatePostForm(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = get_user(request)
+        post.save()
+
+    return render(request, 'home.html', {'form': form})
