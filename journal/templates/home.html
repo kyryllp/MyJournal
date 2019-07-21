@@ -8,14 +8,15 @@
 {% block content %}
     <div class="home">
         <div class="header">
-            <div class="photo" >
-                <div id="photo-link">
-                    <a href="">Add Photo</a>
-                </div>
-            </div>
+{#            <div class="photo" >#}
+{#                <div id="photo-link">#}
+{#                    <a href="">Add Photo</a>#}
+{#                    <img src="{{ user.media.image.url }}" alt="">#}
+{#                </div>#}
+{#            </div>#}
             <div class="info">
                 <div class="name">
-                    <p>Kyryll Parolys</p>
+                    {{ user.full_name }}
                 </div>
                 <hr>
                 <div class="journal-form">
@@ -25,6 +26,16 @@
                 </form>
             </div>
             </div>
+        </div>
+        <div class="journal">
+                    {% for post in posts %}
+                        <h3>{{ post.title }}</h3>
+                        <p>{{ post.body }}</p>
+                        <p>{{ post.date }}</p>
+{#                        delete | edit#}
+{#                        <br>#}
+                    {% endfor %}
+
         </div>
     </div>
 {% endblock %}

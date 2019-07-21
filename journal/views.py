@@ -38,6 +38,7 @@ def register_view(request):
         if next_:
             return redirect(next_)
         return redirect('/')
+    posts = Post.objects.all()
 
     context = {
         'form': form,
@@ -57,5 +58,14 @@ def home_view(request):
         post = form.save(commit=False)
         post.author = get_user(request)
         post.save()
+        return redirect('/')
 
-    return render(request, 'home.html', {'form': form})
+    posts = Post.objects.filter(author=get_user(request))
+
+    context = {
+        'form': form,
+        'posts': posts,
+        'user': get_user(request)
+    }
+
+    return render(request, 'home.html', context)
