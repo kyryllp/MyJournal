@@ -54,3 +54,7 @@
     display: flex;
     flex-direction: row;
 }
+
+.edit-submit {
+    align-content: center;
+}

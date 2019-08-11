@@ -8,32 +8,41 @@
 {% block content %}
     <div class="home">
         <div class="header">
-{#            <div class="photo" >#}
-{#                <div id="photo-link">#}
-{#                    <a href="">Add Photo</a>#}
-{#                    <img src="{{ user.media.image.url }}" alt="">#}
-{#                </div>#}
-{#            </div>#}
+            <div class="photo" >
+                <div id="photo-link">
+                    <a href="">Add Photo</a>
+                    <img src="{{ user.media.image.url }}" alt="">
+                </div>
+            </div>
             <div class="info">
                 <div class="name">
                     Kyryll Parolys
                 </div>
                 <hr>
                 <div class="journal-form">
-                <form method="post">{% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="journal-submit btn btn-primary">Add new Journal</button>
-                </form>
-            </div>
+                    <form method="post">{% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="journal-submit btn btn-primary">Add new Post</button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="journal">
                     {% for post in posts %}
                         <h3>{{ post.title }}</h3>
                         <p>{{ post.body }}</p>
+                        {#                        <a class="btn" href="{% url 'edit' post.id %}"><i class="icon-edit"></i> Edit</a>#}
+                        {#                        <a href="{% url 'edit' post.id %}" class="glyphicon glyphicon-edit">Edit</a> | <a href="{% url 'delete' post.id %}">Delete</a>#}
                         <p>{{ post.date }}</p>
-{#                        delete | edit#}
-{#                        <br>#}
+                        <a href="{% url 'edit' post.id %}" class="btn btn-primary a-btn-slide-text">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            <span><strong>Edit</strong></span>
+                        </a>  |
+                        <a href="{% url 'delete' post.id %}" class="btn btn-primary a-btn-slide-text">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            <span><strong>Delete</strong></span>
+                        </a>
+                        <br>
                     {% endfor %}
 
         </div>

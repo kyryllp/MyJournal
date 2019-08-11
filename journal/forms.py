@@ -56,7 +56,7 @@ class RegisterUserForm(forms.ModelForm):
         return super(RegisterUserForm, self).clean(*args, **kwargs)
 
 
-class CreatePostForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     title = forms.CharField(label='', widget=forms.TextInput(attrs={
         'placeholder': 'Title:'
     }))
@@ -70,3 +70,6 @@ class CreatePostForm(forms.ModelForm):
             'title',
             'body'
         ]
+
+
+
